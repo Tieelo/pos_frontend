@@ -26,7 +26,7 @@ export default {
     const groups = ref([])
 
     onMounted(async () => {
-      const response = await axiosInstance.get('/api/groups')
+      const response = await axiosInstance.get('/api/inventory/groups')
       groups.value = response.data
     })
 
