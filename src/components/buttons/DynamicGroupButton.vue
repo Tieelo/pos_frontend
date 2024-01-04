@@ -3,7 +3,7 @@
     <v-btn
         rounded="sm"
         density="default"
-        color="grey"
+        color="blue"
         v-for="group in inventoryGroups"
         :key="group.id"
         @click="fetchItems(group.id)"

@@ -56,12 +56,5 @@ export default defineComponent({
 </script>
 
 <style>
-.static-button-row {
-  display: flex;
-  justify-content: space-between;
-}
 
-.static-button-row button {
-
-}
 </style>

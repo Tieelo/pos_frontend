@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="POS">
     <div class="header">
       <h1>PoS Kassensystem</h1>
     </div>
@@ -30,7 +30,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import StaticButtonRow from './components/buttons/StaticButtonRow.vue';
-import DynamicButtonGroup from './components/buttons/DynamicButtonGroup.vue';
+import DynamicButtonGroup from './components/buttons/DynamicGroupButton.vue';
 import DynamicItemButton from './components/buttons/DynamicItemButton.vue';
 import CartDisplay from './components/buttons/CartDisplay.vue';
 import axiosInstance from '@/api/axiosInstance';
@@ -88,6 +88,8 @@ export default defineComponent({
 }
 
 .cart-display {
+  display: flex;
+  flex-direction: column;
   flex: 1;
 }
 
