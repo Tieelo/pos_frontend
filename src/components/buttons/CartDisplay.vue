@@ -57,14 +57,13 @@ export default {
 .cart-items {
   color: #4CAF50;
   margin-bottom: 50px;
-  margin-top: 40px;
 }
 
 .cart-display {
   display: flex;
   flex-direction: column;
   flex: 1px;
-  margin-top: 50px;
+  margin-top: 70px;
   margin-left: 50px;
   margin-right: 20px;
 

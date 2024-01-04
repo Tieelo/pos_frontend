@@ -2,15 +2,19 @@
   <div class="static-button-row">
     <v-btn
         class="no-caps"
+        color="blue"
         @click="dummy">Rechnungen</v-btn>
     <v-btn
         class="no-caps"
+        color="red"
         @click="clearCart">Warenkorb leeren</v-btn>
     <v-btn
         class="no-caps"
+        color="red"
         @click="openStorno">SofortStorno</v-btn>
     <v-btn
         class="no-caps"
+        color="green"
         @click="checkout">Checkout</v-btn>
   </div>
 </template>
@@ -76,6 +80,7 @@ export default defineComponent({
 .static-button-row button  {
   width: 15em;
   height: 2em;
+  color: #2c3e50;
 }
 
 </style>
