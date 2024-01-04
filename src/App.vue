@@ -92,10 +92,6 @@ export default defineComponent({
   flex: 5;
 }
 
-.footer{
-  margin-top: 50px;
-  margin-left: 100px;
-}
 
 .item-buttons-grid button {
   width: 20em;

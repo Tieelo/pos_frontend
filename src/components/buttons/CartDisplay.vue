@@ -1,16 +1,18 @@
 <template>
   <div class="cart-display">
-    <ul class="cart-items">
-      <li v-for="cartItem in cartItems" :key="cartItem.item.id" class="cart-item">
-        {{ cartItem.item.name }} x {{ cartItem.amountInCart }} - {{ cartItem.item.price }}€
-      </li>
-    </ul>
-      <div class="footer">
-        <div class="cart-summary">
-      <p>Total Items: {{ itemCount }}</p>
-      <p>Total Price: {{ totalPrice }}€</p>
-        </div>
-        </div>
+    <div class="cart-items-box">
+      <ul class="cart-items">
+        <li v-for="cartItem in cartItems" :key="cartItem.item.id" class="cart-item">
+          {{ cartItem.item.name }} x {{ cartItem.amountInCart }} - {{ cartItem.item.price }}€
+        </li>
+      </ul>
+    </div>
+    <div class="footer">
+      <div class="cart-summary">
+        <p>Total Items: {{ itemCount }}</p>
+        <p>Total Price: {{ totalPrice }}€</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -56,11 +58,6 @@ export default {
 
 <style>
 
-.cart-items {
-  color: #4CAF50;
-  margin-bottom: 50px;
-}
-
 .cart-display {
   display: flex;
   flex-direction: column;
@@ -69,6 +66,14 @@ export default {
   margin-left: 50px;
   margin-right: 20px;
 
+}
+
+.cart-items-box {
+  border: 1px solid #ddd; /* Farbe und Stil der Box-Rahmen anpassen */
+  padding: 10px; /* optional: fügt etwas Abstand zwischen dem Inhalt und der Box hinzu */
+  height: 400px; /* Höhe der Box festlegen */
+  width: 250px; /* Breite der Box festlegen */
+  overflow: auto; /* Falls der Inhalt zu groß ist, wird ein Scrollbalken hinzugefügt */
 }
 
 .cart-item {
