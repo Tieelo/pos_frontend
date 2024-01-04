@@ -11,7 +11,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import axiosInstance from "@/api/axiosInstance";
 
@@ -24,60 +23,46 @@ export default {
     };
   },
   methods: {
-    fetchCartData() {
-      // Fetch cart items
-      axiosInstance.get('/api/cart/items')
-          .then(response => {
-            this.cartItems = response.data;
-          })
-          .catch(error => {
-            console.error('Fehler beim Abrufen der Warenkorbartikel', error);
-          });
-
-      // Fetch total price
-      axiosInstance.get('/api/cart/total')
-          .then(response => {
-            this.totalPrice = response.data;
-          })
-          .catch(error => {
-            console.error('Fehler beim Abrufen des Gesamtpreises', error);
-          });
-
-      // Fetch item count
-      axiosInstance.get('/api/cart/count')
-          .then(response => {
-            this.itemCount = response.data;
-          })
-          .catch(error => {
-            console.error('Fehler beim Abrufen der Gesamtanzahl der Artikel', error);
-          });
-    }
+    async fetchCartDataFrom(endpoint) {
+      try {
+        const response = await axiosInstance.get(endpoint);
+        return response.data;
+      } catch (error) {
+        console.error(`Fehler beim Abrufen der Daten von ${endpoint}`, error);
+      }
+    },
+    async fetchCartData() {
+      this.cartItems = await this.fetchCartDataFrom('/api/cart/items');
+      this.totalPrice = await this.fetchCartDataFrom('/api/cart/total');
+      this.itemCount = await this.fetchCartDataFrom('/api/cart/count');
+    },
   },
   created() {
     this.fetchCartData();
   },
   watch: {
-    // Watch for changes in cartItems to update the component
     cartItems: {
       handler() {
         this.fetchCartData();
       },
       deep: true
-    }
+    },
   }
 }
 </script>
-
 <style>
 .cart-display {
   /* Styling for cart display */
 }
+
 .cart-items {
   /* Styling for cart items list */
 }
+
 .cart-item {
   /* Styling for individual cart item */
 }
+
 .cart-summary {
   /* Styling for cart summary section */
 }
