@@ -10,43 +10,41 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { ref} from 'vue';
 import axiosInstance from '@/api/axiosInstance'
 
 export default {
-  data() {
+  setup(_, {emit}) {
+
+    const inventoryGroups = ref<any[]>([]);
+
+    const fetchInventoryGroups = async () => {
+      try {
+        const response = await axiosInstance.get('/api/inventory/groups');
+        inventoryGroups.value = response.data;
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Inventargruppen', error);
+      }
+    };
+
+    const fetchItems = async (groupId: string) => {
+      try {
+        const response = await axiosInstance.get(`/api/inventory/items?groupId=${groupId}`);
+        // Emit an event with the fetched items
+        emit('items-fetched', response.data);
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Items', error);
+      }
+    };
+
+    fetchInventoryGroups();
+
     return {
-      inventoryGroups: [],
+      inventoryGroups,
+      fetchItems
     };
   },
-  created() {
-    this.fetchInventoryGroups();
-  },
-  methods: {
-    fetchInventoryGroups() {
-      axiosInstance.get('/api/inventory/groups')
-          .then(response => {
-            this.inventoryGroups = response.data;
-          })
-          .catch(error => {
-            console.error('Fehler beim Abrufen der Inventargruppen', error);
-          });
-    },
-    fetchItems(groupId) {
-      axiosInstance.get(`/api/inventory/items?groupId=${groupId}`)
-          .then(response => {
-            // Emit an event with the fetched items
-            this.$emit('items-fetched', response.data);
-          })
-          .catch(error => {
-            console.error('Fehler beim Abrufen der Items', error);
-          });
-    },
-    selectGroup(groupId) {
-      // Emit an event with the selected group ID
-      this.$emit('group-selected', groupId);
-    }
-  }
 }
 </script>
 

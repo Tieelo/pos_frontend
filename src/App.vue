@@ -26,14 +26,21 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
 import StaticButtonRow from './components/buttons/StaticButtonRow.vue';
 import DynamicButtonGroup from './components/buttons/DynamicButtonGroup.vue';
 import DynamicItemButton from './components/buttons/DynamicItemButton.vue';
 import CartDisplay from './components/buttons/CartDisplay.vue';
 import axiosInstance from '@/api/axiosInstance';
-export default {
 
+interface Item {
+  id: string | number;
+  name: string;
+  // Other properties for items
+}
+
+export default defineComponent({
   components: {
     StaticButtonRow,
     DynamicButtonGroup,
@@ -41,41 +48,37 @@ export default {
     CartDisplay
   },
 
-  data() {
-    return {
-      items: [],
+  setup() {
+    const items = ref<Item[]>([]);
+
+    const updateItems = (fetchedItems: Item[]) => {
+      items.value = fetchedItems;
     };
-  },
 
-  created() {
-    // Ensure to replace 'groupId' with your actual groupId
-    this.fetchItems('groupId');
-  },
+    const fetchItems = async (groupId: string) => {
+      try {
+        const response = await axiosInstance.get(`/api/inventory/items?groupId=${groupId}`);
+        items.value = response.data;
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Items', error);
+      }
+    };
 
-  methods: {
-
-    fetchItems(groupId) {
-      axiosInstance.get(`/api/inventory/items?groupId=${groupId}`)
-          .then(response => {
-            this.items = response.data;
-            console.log(response.data);
-          })
-          .catch(error => {
-            console.error('Fehler beim Abrufen der Items', error);
-          });
-    },
-
-    updateItems(fetchedItems) {
-      this.items = fetchedItems;
-    },
-
-    fetchCartData() {
+    const fetchCartData = () => {
       // Fetch updated cart data
       // This method would be called after an item is added to the cart
       // You should implement the logic to fetch and update the cart data here
-    }
-  }
-};
+    };
+
+    fetchItems('groupId');  // replace 'groupId' with your actual groupId value
+
+    return {
+      items,
+      updateItems,
+      fetchCartData
+    };
+  },
+});
 </script>
 
 <style>

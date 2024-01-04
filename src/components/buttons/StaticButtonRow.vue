@@ -7,45 +7,52 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import axiosInstance from '@/api/axiosInstance'
 
-export default {
-  methods: {
-    dummy() {
-      // Dummy-Funktion, tut nichts
-    },
-    clearCart() {
-      // POST-Anfrage an die API senden
-      axiosInstance.post('/api/cart/return')
-          .then(response => {
-            console.log('Warenkorb geleert', response);
-          })
-          .catch(error => {
-            console.error('Fehler beim Leeren des Warenkorbs', error);
-          });
-    },
-    openStorno() {
+export default defineComponent({
+  setup() {
+    const dummy = () => {
+      // Dummy function, does nothing
+    };
+
+    const clearCart = async () => {
+      try {
+        const response = await axiosInstance.post('/api/cart/return');
+        console.log('Warenkorb geleert', response);
+      } catch (error) {
+        console.error('Fehler beim Leeren des Warenkorbs', error);
+      }
+    };
+
+    const openStorno = async () => {
       const stornoWindow = window.open('', 'SofortStorno', 'width=600,height=400');
-      axiosInstance.get('/api/cart/items')
-          .then(response => {
-            stornoWindow.document.write(JSON.stringify(response.data));
-          })
-          .catch(error => {
-            console.error('Fehler beim Abrufen des Warenkorbs', error);
-          });
-    },
-    checkout() {
-      axiosInstance.post('/api/cart/sell')
-          .then(response => {
-            console.log('Einkauf erledigt', response);
-          })
-          .catch(error => {
-            console.error('Fehler beim Checkout', error);
-          });
-    }
+      try {
+        const response = await axiosInstance.get('/api/cart/items');
+        stornoWindow.document.write(JSON.stringify(response.data));
+      } catch (error) {
+        console.error('Fehler beim Abrufen des Warenkorbs', error);
+      }
+    };
+
+    const checkout = async () => {
+      try {
+        const response = await axiosInstance.post('/api/cart/sell');
+        console.log('Einkauf erledigt', response);
+      } catch (error) {
+        console.error('Fehler beim Checkout', error);
+      }
+    };
+
+    return {
+      dummy,
+      clearCart,
+      openStorno,
+      checkout
+    };
   }
-}
+})
 </script>
 
 <style>

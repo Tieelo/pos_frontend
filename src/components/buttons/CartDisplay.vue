@@ -2,7 +2,7 @@
   <div class="cart-display">
     <ul class="cart-items">
       <li v-for="cartItem in cartItems" :key="cartItem.item.id" class="cart-item">
-        {{ cartItem.item.name }} x {{ cartItem.amountInCart }} - {{ cartItem.item.price }}€
+        {{ cartItem.item.name }} x {{ cartItem.amount }} - {{ cartItem.item.price }}€
       </li>
     </ul>
     <div class="cart-summary">
@@ -11,45 +11,47 @@
     </div>
   </div>
 </template>
-<script>
+
+<script lang="ts">
+import {ref, watch} from "vue";
 import axiosInstance from "@/api/axiosInstance";
 
 export default {
-  data() {
-    return {
-      cartItems: [],
-      totalPrice: 0,
-      itemCount: 0,
-    };
-  },
-  methods: {
-    async fetchCartDataFrom(endpoint) {
+  setup() {
+    const cartItems = ref<any[]>([]);
+    const totalPrice = ref<number>(0);
+    const itemCount = ref<number>(0);
+
+    const fetchCartDataFrom = async (endpoint: string): Promise<any> => {
       try {
         const response = await axiosInstance.get(endpoint);
         return response.data;
       } catch (error) {
-        console.error(`Fehler beim Abrufen der Daten von ${endpoint}`, error);
+        console.error(`Error when fetching data from ${endpoint}`, error);
       }
-    },
-    async fetchCartData() {
-      this.cartItems = await this.fetchCartDataFrom('/api/cart/items');
-      this.totalPrice = await this.fetchCartDataFrom('/api/cart/total');
-      this.itemCount = await this.fetchCartDataFrom('/api/cart/count');
-    },
+    };
+
+    const fetchCartData = async () => {
+      cartItems.value = await fetchCartDataFrom("/api/cart/items");
+      totalPrice.value = await fetchCartDataFrom("/api/cart/total");
+      itemCount.value = await fetchCartDataFrom("/api/cart/count");
+    };
+
+    // Watch for changes in cartItems and refetch data when it changes
+    watch(cartItems, fetchCartData, {deep: true});
+
+    // Fetch data on setup
+    fetchCartData();
+
+    return {
+      cartItems,
+      totalPrice,
+      itemCount,
+    };
   },
-  created() {
-    this.fetchCartData();
-  },
-  watch: {
-    cartItems: {
-      handler() {
-        this.fetchCartData();
-      },
-      deep: true
-    },
-  }
-}
+};
 </script>
+
 <style>
 .cart-display {
   /* Styling for cart display */

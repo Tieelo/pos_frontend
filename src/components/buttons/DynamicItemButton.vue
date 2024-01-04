@@ -6,31 +6,41 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import axiosInstance from "@/api/axiosInstance";
 
-export default {
+interface Item {
+  id: string | number,
+  name: string,
+  // Include other properties of the item
+}
+
+export default defineComponent({
   props: {
     item: {
-      type: Object,
+      type: Object as PropType<Item>,
       required: true
-    }
+    },
   },
+  setup(props, { emit }) {
 
-  methods: {
-    addItemToCart(itemId) {
+    const addItemToCart = async (itemId: string | number) => {
       const body = [itemId, 1];
-      axiosInstance.post('/api/cart/fill', body)
-          .then(response => {
-            console.log('Item hinzugefügt', response);
-            this.$emit('itemAdded', itemId); // Emit an event for the parent component to handle
-          })
-          .catch(error => {
-            console.error('Fehler beim Hinzufügen des Items', error);
-          });
-    }
+      try {
+        const response = await axiosInstance.post('/api/cart/fill', body);
+        console.log('Item hinzugefügt', response);
+        emit('itemAdded', itemId); // Emit an event for the parent component to handle
+      } catch (error) {
+        console.error('Fehler beim Hinzufügen des Items', error);
+      }
+    };
+
+    return {
+      addItemToCart
+    };
   }
-}
+})
 </script>
 
 <style>
