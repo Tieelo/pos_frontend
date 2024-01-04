@@ -75,6 +75,7 @@ export default {
   height: 400px; /* Höhe der Box festlegen */
   width: 250px; /* Breite der Box festlegen */
   overflow: auto; /* Falls der Inhalt zu groß ist, wird ein Scrollbalken hinzugefügt */
+  background-color: #ffffff; /* Dunkelgrüne Farbe */
 }
 
 .cart-item {
