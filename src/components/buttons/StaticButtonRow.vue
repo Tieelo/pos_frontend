@@ -1,9 +1,9 @@
 <template>
   <div class="static-button-row">
-    <button @click="dummy">Rechnungen</button>
-    <button @click="clearCart">Warenkorb leeren</button>
-    <button @click="openStorno">SofortStorno</button>
-    <button @click="checkout">Checkout</button>
+    <v-btn @click="dummy">Rechnungen</v-btn>
+    <v-btn @click="clearCart">Warenkorb leeren</v-btn>
+    <v-btn @click="openStorno">SofortStorno</v-btn>
+    <v-btn @click="checkout">Checkout</v-btn>
   </div>
 </template>
 
