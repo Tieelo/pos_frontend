@@ -8,11 +8,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "-": "^0.0.1",
+    "@mdi/font": "^7.4.47",
+    "@quasar/cli": "^2.3.0",
     "axios": "^1.5.1",
-    "vue": "^3.3.4"
+    "g": "^2.0.1",
+    "quasar": "^2.14.2",
+    "vue": "^3.3.4",
+    "vuetify": "^3.4.9"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.3.4",
+    "sass": "^1.69.7",
     "vite": "^4.4.9"
   }
 }

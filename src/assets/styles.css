@@ -16,7 +16,7 @@ body {
     padding: 10px 0;
 }
 
-.menu-button {
+.dynamic-button-group button {
     background-color: #f44336; /* Rote Farbe */
     border: none;
     color: white;

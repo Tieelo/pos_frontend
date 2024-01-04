@@ -62,6 +62,6 @@ export default defineComponent({
 }
 
 .static-button-row button {
-  margin: 5px;
+
 }
 </style>

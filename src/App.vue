@@ -9,6 +9,7 @@
       </div>
       <div class="button-section">
         <StaticButtonRow class="static-button-row" />
+        <div class="divider"></div>
         <DynamicButtonGroup class="dynamic-button-group" @items-fetched="updateItems" />
         <div class="item-buttons-grid">
           <DynamicItemButton
@@ -81,14 +82,51 @@ export default defineComponent({
 });
 </script>
 
+<style scoped>
+.main-content {
+  display: flex;
+}
+
+.cart-display {
+  flex: 1;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+</style>
 <style>
+.button-section   {
+  display: grid;
+}
 .item-buttons-grid {
   display: grid;
-  grid-template-columns: repeat(4, 10em);
+  grid-template-columns: repeat(4, 8em);
   grid-auto-rows: minmax(auto, auto);
   gap: 1em 1em;/* adjust as needed, this will place space around items */
 }
 .item-buttons-grid button {
+  width: 10em;
+  height: 2em;
+}
+.dynamic-button-group button {
+  width: 10em;
+  height: 2em;
+}
+.dynamic-button-group {
+  display: grid;
+  grid-template-columns: repeat(4, 8em);
+  grid-auto-rows: minmax(auto, auto);
+  gap: 1em 1em;
+}
+.static-button-row {
+  display: grid;
+  grid-template-columns: repeat(4, 8em);
+  gap: 1em 1em;
+}
+.static-button-row button  {
   width: 10em;
   height: 2em;
 }

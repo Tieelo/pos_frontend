@@ -1,12 +1,15 @@
 <template>
   <div class="dynamic-button-group">
-    <button
+    <v-btn
+        rounded="sm"
+        density="default"
+        color="grey"
         v-for="group in inventoryGroups"
         :key="group.id"
         @click="fetchItems(group.id)"
     >
       {{ group.name }}
-    </button>
+    </v-btn>
   </div>
 </template>
 
@@ -49,8 +52,5 @@ export default {
 </script>
 
 <style>
-.dynamic-button-group button {
-  width: 10em;
-  height: 2em;
-}
+
 </style>

@@ -44,8 +44,5 @@ export default defineComponent({
 </script>
 
 <style>
-.dynamic-item-button button {
-  margin: 5px;
-  /* Add additional styles here */
-}
+
 </style>
