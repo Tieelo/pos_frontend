@@ -83,7 +83,7 @@ export default {
   border: 0.1em solid #ddd; /* Farbe und Stil der Box-Rahmen anpassen */
   padding: 1em; /* optional: fügt etwas Abstand zwischen dem Inhalt und der Box hinzu */
   height: 30em; /* Höhe der Box festlegen */
-  width: 20em; /* Breite der Box festlegen */
+  width: 24em; /* Breite der Box festlegen */
   overflow: auto; /* Falls der Inhalt zu groß ist, wird ein Scrollbalken hinzugefügt */
   background-color: #ffffff; /* Dunkelgrüne Farbe */
 }
