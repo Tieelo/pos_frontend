@@ -1,0 +1,40 @@
+/* Grundlegende Stildefinitionen */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.header {
+    background-color: #4CAF50; /* Dunkelgrüne Farbe */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.menu-button {
+    background-color: #f44336; /* Rote Farbe */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.menu-button.green {
+    background-color: #4CAF50; /* Dunkelgrüne Farbe */
+}
+
+.menu-button.blue {
+    background-color: #008CBA; /* Blaue Farbe */
+}
+
+/* Weitere Stile für das Layout und die Elemente können hier hinzugefügt werden */

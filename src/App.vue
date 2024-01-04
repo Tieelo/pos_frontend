@@ -32,32 +32,43 @@ import DynamicButtonGroup from './components/buttons/DynamicButtonGroup.vue';
 import DynamicItemButton from './components/buttons/DynamicItemButton.vue';
 import CartDisplay from './components/buttons/CartDisplay.vue';
 import axiosInstance from '@/api/axiosInstance';
-
 export default {
+
   components: {
     StaticButtonRow,
     DynamicButtonGroup,
     DynamicItemButton,
     CartDisplay
   },
+
   data() {
     return {
-      items: [], // Items to be displayed as buttons
+      items: [],
     };
   },
+
+  created() {
+    // Ensure to replace 'groupId' with your actual groupId
+    this.fetchItems('groupId');
+  },
+
   methods: {
+
     fetchItems(groupId) {
       axiosInstance.get(`/api/inventory/items?groupId=${groupId}`)
           .then(response => {
             this.items = response.data;
+            console.log(response.data);
           })
           .catch(error => {
             console.error('Fehler beim Abrufen der Items', error);
           });
     },
+
     updateItems(fetchedItems) {
       this.items = fetchedItems;
     },
+
     fetchCartData() {
       // Fetch updated cart data
       // This method would be called after an item is added to the cart
@@ -68,48 +79,14 @@ export default {
 </script>
 
 <style>
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.header {
-  /* Styles for the header */
-}
-
-.main-content {
-  display: flex;
-  flex-grow: 1;
-}
-
-.cart-display {
-  flex: 1;
-  /* Styles specific to the cart display */
-}
-
-.button-section {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-}
-
-.static-button-row {
-  /* Styles specific to the static button row */
-}
-
-.dynamic-button-group {
-  /* Styles specific to the dynamic button group */
-}
-
 .item-buttons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
-  /* Styles for the container of item buttons */
+  grid-template-columns: repeat(4, 10em);
+  grid-auto-rows: minmax(auto, auto);
+  gap: 1em 1em;/* adjust as needed, this will place space around items */
 }
-
-.footer {
-  /* Styles for the footer */
+.item-buttons-grid button {
+  width: 10em;
+  height: 2em;
 }
 </style>

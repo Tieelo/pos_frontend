@@ -52,7 +52,7 @@ export default {
 
 <style>
 .dynamic-button-group button {
-  margin: 5px;
-  /* Weitere Styling-Optionen hier hinzufügen */
+  width: 10em;
+  height: 2em;
 }
 </style>

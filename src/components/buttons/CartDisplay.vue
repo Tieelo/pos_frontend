@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from "@/api/axiosInstance";
 
 export default {
   data() {
@@ -26,7 +26,7 @@ export default {
   methods: {
     fetchCartData() {
       // Fetch cart items
-      axios.get('http://localhost:11386/api/cart/items')
+      axiosInstance.get('/api/cart/items')
           .then(response => {
             this.cartItems = response.data;
           })
@@ -35,7 +35,7 @@ export default {
           });
 
       // Fetch total price
-      axios.get('http://localhost:11386/api/cart/total')
+      axiosInstance.get('/api/cart/total')
           .then(response => {
             this.totalPrice = response.data;
           })
@@ -44,7 +44,7 @@ export default {
           });
 
       // Fetch item count
-      axios.get('http://localhost:11386/api/cart/count')
+      axiosInstance.get('/api/cart/count')
           .then(response => {
             this.itemCount = response.data;
           })
