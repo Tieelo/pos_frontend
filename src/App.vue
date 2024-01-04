@@ -17,6 +17,7 @@
               :key="item.id"
               :item="item"
               @itemAdded="fetchCartData"
+              class="own-button"
           />
         </div>
       </div>
@@ -83,53 +84,25 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
 .main-content {
   display: flex;
-}
-
-.cart-display {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }
 
 .button-section {
   display: flex;
   flex-direction: column;
-  flex: 2;
+  flex: 5;
 }
-</style>
-<style>
-.button-section   {
-  display: grid;
+
+.footer{
+  margin-top: 50px;
+  margin-left: 100px;
 }
-.item-buttons-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 8em);
-  grid-auto-rows: minmax(auto, auto);
-  gap: 1em 1em;/* adjust as needed, this will place space around items */
-}
+
 .item-buttons-grid button {
-  width: 10em;
+  width: 20em;
   height: 2em;
 }
-.dynamic-button-group button {
-  width: 10em;
-  height: 2em;
-}
-.dynamic-button-group {
-  display: grid;
-  grid-template-columns: repeat(4, 8em);
-  grid-auto-rows: minmax(auto, auto);
-  gap: 1em 1em;
-}
-.static-button-row {
-  display: grid;
-  grid-template-columns: repeat(4, 8em);
-  gap: 1em 1em;
-}
-.static-button-row button  {
-  width: 10em;
-  height: 2em;
-}
+
 </style>

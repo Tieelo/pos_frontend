@@ -57,4 +57,17 @@ export default defineComponent({
 
 <style>
 
+.static-button-row {
+  display: flex;
+  grid-template-columns: repeat(4, 8em);
+  gap: 3em;
+  margin-bottom: 20px;
+  margin-top: 140px;
+}
+
+.static-button-row button  {
+  width: 15em;
+  height: 2em;
+}
+
 </style>

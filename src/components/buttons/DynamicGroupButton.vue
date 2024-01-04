@@ -52,5 +52,16 @@ export default {
 </script>
 
 <style>
+.dynamic-button-group {
+  display: grid;
+  grid-template-columns: repeat(4, 8em);
+  grid-auto-rows: minmax(auto, auto);
+  gap: 1em 4em;
+  margin-bottom: 20px;
+}
 
+.dynamic-button-group button {
+  width: 20em;
+  height: 2em;
+}
 </style>

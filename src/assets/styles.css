@@ -4,10 +4,10 @@ body {
 }
 
 .header {
-    background-color: #4CAF50; /* Dunkelgrüne Farbe */
+    background-color: #2c3e50; /* Dunkelgrüne Farbe */
     color: white;
-    padding: 10px;
-    text-align: center;
+    padding: 20px;
+    text-align: center ;
 }
 
 .menu {
@@ -16,25 +16,14 @@ body {
     padding: 10px 0;
 }
 
-.dynamic-button-group button {
-    background-color: #f44336; /* Rote Farbe */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+
 
 .menu-button.green {
     background-color: #4CAF50; /* Dunkelgrüne Farbe */
 }
 
 .menu-button.blue {
-    background-color: #008CBA; /* Blaue Farbe */
+    background-color: #ec0000; /* Blaue Farbe */
 }
 
 /* Weitere Stile für das Layout und die Elemente können hier hinzugefügt werden */

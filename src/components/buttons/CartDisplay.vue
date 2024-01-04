@@ -53,16 +53,22 @@ export default {
 </script>
 
 <style>
+
 .cart-display {
-  /* Styling for cart display */
+  display: flex;
+  flex-direction: column;
+  flex: 1px;
+  margin-top: 50px;
+  margin-left: 50px;
+
 }
 
 .cart-items {
-  /* Styling for cart items list */
+  color: #4CAF50;
+  margin-bottom: 50px;
 }
 
 .cart-item {
-  /* Styling for individual cart item */
 }
 
 .cart-summary {
