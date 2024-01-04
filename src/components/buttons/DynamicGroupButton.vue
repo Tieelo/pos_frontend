@@ -1,6 +1,8 @@
 <template>
   <div class="dynamic-button-group">
     <v-btn
+        class="no-caps"
+        stacked="true"
         rounded="sm"
         density="default"
         color="blue"
@@ -50,6 +52,7 @@ export default {
   },
 }
 </script>
+
 
 <style>
 
