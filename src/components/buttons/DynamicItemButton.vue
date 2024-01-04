@@ -47,15 +47,16 @@ export default defineComponent({
 
 .item-buttons-grid {
   display: grid;
-  grid-template-columns: repeat(4, 8em);
+  grid-template-columns: repeat(4, 15em);
   grid-auto-rows: minmax(auto, auto);
   gap: 1em 1em;
-  margin-bottom: 20px;
 }
 
-.item-buttons-grid button {
-  width: 20em;
+.item-buttons-grid button{
+  width: 15em;
   height: 2em;
 }
+
+
 
 </style>

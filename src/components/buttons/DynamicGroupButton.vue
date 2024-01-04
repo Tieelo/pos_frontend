@@ -5,7 +5,6 @@
         stacked="true"
         rounded="sm"
         density="default"
-        color="blue"
         v-for="group in inventoryGroups"
         :key="group.id"
         @click="fetchItems(group.id)"

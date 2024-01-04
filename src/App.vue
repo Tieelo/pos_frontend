@@ -22,9 +22,6 @@
         </div>
       </div>
     </div>
-    <div class="footer">
-      <p>Total: 0.0€</p>
-    </div>
   </div>
 </template>
 
