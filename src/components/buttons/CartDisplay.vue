@@ -1,16 +1,27 @@
 <template>
   <div class="cart-display">
-    <div class="cart-items-box">
-      <ul class="cart-items">
-        <li v-for="cartItem in cartItems" :key="cartItem.item.id" class="cart-item">
-          {{ cartItem.item.name }} x {{ cartItem.amountInCart }} - {{ cartItem.item.price }}€
-        </li>
-      </ul>
-    </div>
+    <v-table
+        density="comfortable"
+        class="cart-items-box">
+      <thead>
+      <tr>
+        <th class="text-left">Produkt</th>
+        <th class="text-left">#</th>
+        <th class="text-left">Preis</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="cartItem in cartItems" :key="cartItem.item.id">
+        <td>{{cartItem.item.name}}</td>
+        <td>{{cartItem.amountInCart}}</td>
+        <td>{{(cartItem.item.price).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2})}} €</td>
+      </tr>
+      </tbody>
+    </v-table>
     <div class="footer">
       <div class="cart-summary">
         <p>Total Items: {{ itemCount }}</p>
-        <p>Total Price: {{ totalPrice }}€</p>
+        <p>Total Price: {{ (totalPrice).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2})}} €</p>
       </div>
     </div>
   </div>
@@ -62,18 +73,17 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 1px;
-  margin-top: 70px;
-  margin-left: 50px;
-  margin-right: 20px;
-
+  flex: 1em;
+  margin-top: 5em;
+  margin-left: 5em;
+  margin-right: 2em;
 }
 
 .cart-items-box {
-  border: 1px solid #ddd; /* Farbe und Stil der Box-Rahmen anpassen */
-  padding: 10px; /* optional: fügt etwas Abstand zwischen dem Inhalt und der Box hinzu */
-  height: 400px; /* Höhe der Box festlegen */
-  width: 250px; /* Breite der Box festlegen */
+  border: 0.1em solid #ddd; /* Farbe und Stil der Box-Rahmen anpassen */
+  padding: 1em; /* optional: fügt etwas Abstand zwischen dem Inhalt und der Box hinzu */
+  height: 30em; /* Höhe der Box festlegen */
+  width: 20em; /* Breite der Box festlegen */
   overflow: auto; /* Falls der Inhalt zu groß ist, wird ein Scrollbalken hinzugefügt */
   background-color: #ffffff; /* Dunkelgrüne Farbe */
 }
