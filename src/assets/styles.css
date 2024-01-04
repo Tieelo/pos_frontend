@@ -25,5 +25,8 @@ body {
 .menu-button.blue {
     background-color: #ec0000; /* Blaue Farbe */
 }
+.no-caps {
+    text-transform: none !important;
+}
 
 /* Weitere Stile für das Layout und die Elemente können hier hinzugefügt werden */
