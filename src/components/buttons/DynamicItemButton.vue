@@ -1,6 +1,8 @@
 <template>
   <div class="dynamic-item-button">
-    <v-btn @click="addItemToCart(item.id)">
+    <v-btn
+        class="no-caps"
+        @click="addItemToCart(item.id)">
       {{ item.name }}
     </v-btn>
   </div>

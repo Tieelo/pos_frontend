@@ -2,13 +2,15 @@
   <div class="cart-display">
     <ul class="cart-items">
       <li v-for="cartItem in cartItems" :key="cartItem.item.id" class="cart-item">
-        {{ cartItem.item.name }} x {{ cartItem.amount }} - {{ cartItem.item.price }}€
+        {{ cartItem.item.name }} x {{ cartItem.amountInCart }} - {{ cartItem.item.price }}€
       </li>
     </ul>
-    <div class="cart-summary">
+      <div class="footer">
+        <div class="cart-summary">
       <p>Total Items: {{ itemCount }}</p>
       <p>Total Price: {{ totalPrice }}€</p>
-    </div>
+        </div>
+        </div>
   </div>
 </template>
 
@@ -72,6 +74,13 @@ export default {
 .cart-item {
 }
 
+.footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+}
 .cart-summary {
   /* Styling for cart summary section */
 }
