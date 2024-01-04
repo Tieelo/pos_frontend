@@ -61,6 +61,7 @@ export default {
 .cart-display {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   flex: 1px;
   margin-top: 70px;
   margin-left: 50px;
@@ -80,12 +81,12 @@ export default {
 }
 
 .footer {
-  position: fixed;
-  bottom: 20px;
+  margin-top: 10px; /* Optional: Fügt etwas Abstand zwischen der Box und dem Footer hinzu */
   width: 100%;
   background: #fff;
   padding: 10px;
 }
+
 .cart-summary {
   /* Styling for cart summary section */
 }
