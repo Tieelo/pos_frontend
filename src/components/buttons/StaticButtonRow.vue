@@ -72,7 +72,7 @@ export default defineComponent({
 .static-button-row {
   display: flex;
   grid-template-columns: repeat(4, 8em);
-  gap: 3em;
+  gap: 2.9em;
   margin-bottom: 20px;
   margin-top: 140px;
 }
