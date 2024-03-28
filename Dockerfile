@@ -1,4 +1,8 @@
 FROM nginx:alpine
-LABEL authors="MIRCO.FRANZKOWIAK"
 
-ENTRYPOINT ["top", "-b"]
+USER root
+
+RUN apk upgrade --no-cache &&\
+    apk add --no-cache bash curl
+
+COPY /dist/ /usr/share/nginx/html/
