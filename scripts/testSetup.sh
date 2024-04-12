@@ -11,5 +11,7 @@ export TAG="${APPLICATION}:${VERSION}"
 npm run build
 
 docker build -f Dockerfile --no-cache -t ${TAG} .
-docker run -d --name ${APPLICATION} -p 8080:8080 ${TAG}
+docker run \
+  -e API_BASE_URL=http://172.17.0.3:11386 \
+  -d --name ${APPLICATION} -p 8080:80  ${TAG}
 docker logs -f ${APPLICATION}
