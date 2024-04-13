@@ -1,12 +1,11 @@
 // axiosInstance.js
-
 import axios from 'axios'
-import dotenv from 'dotenv'
 
-dotenv.config()
-
+// Create the Axios instance
 const axiosInstance = axios.create({
-    baseURL: process.env.BASE_URL || "http://localhost:11386"
-});
+    baseURL: import.meta.env.VITE_APP_BASE_URL || 'http://localhost:11386'
+})
 
-export default axiosInstance;
+console.log(axiosInstance.defaults.baseURL) // Log the base URL
+
+export default axiosInstance
