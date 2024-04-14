@@ -27,3 +27,5 @@ coverage
 *.sln
 *.sw?
 .secrets
+/pos/pos_backend/
+/pos/pos_frontend/
