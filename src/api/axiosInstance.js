@@ -1,9 +1,10 @@
-// axiosInstance.js
 import axios from 'axios'
-
 // Create the Axios instance
+
+
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_BACKEND_URL || 'http://localhost:11386'
+    baseURL: 'http://pos_backend:8080'
+    /*baseURL: import.meta.env.VITE_BACKEND_URL || 'http://localhost:11386'*/
 })
 
 console.log(axiosInstance.defaults.baseURL) // Log the base URL
