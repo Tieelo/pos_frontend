@@ -5,9 +5,6 @@ if [ -n "${BACKEND_URL}" ]; then
     # Pfad zur JavaScript-Datei
     FILE_PATH=$(ls /usr/share/nginx/html/assets/index-*.js)
 
-    # Neue URL, die Sie setzen möchten
-    BACKEND_URL=${BACKEND_URL}
-
     # Suchen und Ersetzen der URL in der Datei
-    sed -i "s|{baseURL:\"http://pos_backend:8080\"}|{baseURL:\"$BACKEND_URL\"}|" "$FILE_PATH"
+    sed -i "s|{baseURL:\"http://pos_backend:8080\"}|{baseURL:\"${BACKEND_URL}\"}|" "${FILE_PATH}"
 fi
