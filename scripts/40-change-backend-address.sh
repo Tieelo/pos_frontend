@@ -8,5 +8,5 @@ if [ -n "${BACKEND_URL}" ]; then
     # Suchen und Ersetzen der URL in der Datei
     # sed -i "s|{baseURL:\"http://pos_backend:8080\",withCredentials:!0}|{baseURL:\"${BACKEND_URL}\",withCredentials:!0}|" "${FILE_PATH}"
     # sed -i "s|{baseURL:\"http://pos_backend:8080\"}|{baseURL:\"${BACKEND_URL}\"}|" "${FILE_PATH}"
-    sed -r "s|{baseURL:\"http://pos_backend:8080\"|{baseURL:\"${BACKEND_URL}\"|" "${FILE_PATH}"
+    sed -i "s|{baseURL:\"http://pos_backend:8080\"|{baseURL:\"${BACKEND_URL}\"|" "${FILE_PATH}"
 fi
