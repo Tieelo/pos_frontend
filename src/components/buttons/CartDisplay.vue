@@ -2,7 +2,8 @@
   <div class="cart-display">
     <v-table
         density="comfortable"
-        class="cart-items-box">
+        class="cart-items-box"
+    >
       <thead>
       <tr>
         <th class="text-left">Produkt</th>
@@ -10,60 +11,25 @@
         <th class="text-left">Preis</th>
       </tr>
       </thead>
+
       <tbody>
       <tr v-for="cartItem in cartItems" :key="cartItem.item.id">
-        <td>{{cartItem.item.name}}</td>
-        <td>{{cartItem.amountInCart}}</td>
-        <td>{{(cartItem.item.price).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2})}} €</td>
+        <td>{{ cartItem.item.name }}</td>
+        <td>{{ cartItem.amountInCart }}</td>
+        <td>{{ (cartItem.item.price).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2}) }} €</td>
       </tr>
       </tbody>
     </v-table>
-    <div class="footer">
-      <div class="cart-summary">
-        <p>Total Items: {{ itemCount }}</p>
-        <p>Total Price: {{ (totalPrice).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2})}} €</p>
-      </div>
-    </div>
+
+    <p>Total Items: {{ itemCount }}</p>
+    <p>Total Price: {{ (totalPrice).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2}) }} €</p>
+
   </div>
 </template>
 
 <script lang="ts">
-import {ref, watch} from "vue";
-import axiosInstance from "@/api/axiosInstance";
-
 export default {
-  setup() {
-    const cartItems = ref<any[]>([]);
-    const totalPrice = ref<number>(0);
-    const itemCount = ref<number>(0);
-
-    const fetchCartDataFrom = async (endpoint: string): Promise<any> => {
-      try {
-        const response = await axiosInstance.get(endpoint);
-        return response.data;
-      } catch (error) {
-        console.error(`Error when fetching data from ${endpoint}`, error);
-      }
-    };
-
-    const fetchCartData = async () => {
-      cartItems.value = await fetchCartDataFrom("/api/cart/items");
-      totalPrice.value = await fetchCartDataFrom("/api/cart/total");
-      itemCount.value = await fetchCartDataFrom("/api/cart/count");
-    };
-
-    // Watch for changes in cartItems and refetch data when it changes
-    watch(cartItems, fetchCartData, {deep: true});
-
-    // Fetch data on setup
-    fetchCartData();
-
-    return {
-      cartItems,
-      totalPrice,
-      itemCount,
-    };
-  },
+  props: ['cartItems', 'totalPrice', 'itemCount'],
 };
 </script>
 

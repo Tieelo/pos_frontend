@@ -3,14 +3,21 @@
     <div class="header">
       <h1>PoS Kassensystem</h1>
     </div>
+
     <div class="main-content">
       <div class="cart-display">
-        <CartDisplay />
+        <CartDisplay
+            :cartItems="cartItems"
+            :totalPrice="totalPrice"
+            :itemCount="itemCount"
+        />
       </div>
+
       <div class="button-section">
-        <StaticButtonRow class="static-button-row" />
+        <StaticButtonRow class="static-button-row" @updateCart="fetchCartData"/>
         <div class="divider"></div>
         <DynamicButtonGroup class="dynamic-button-group" @items-fetched="updateItems" />
+
         <div class="item-buttons-grid">
           <DynamicItemButton
               v-for="item in items"
@@ -26,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import {defineComponent, onMounted, ref} from 'vue';
 import StaticButtonRow from './components/buttons/StaticButtonRow.vue';
 import DynamicButtonGroup from './components/buttons/DynamicGroupButton.vue';
 import DynamicItemButton from './components/buttons/DynamicItemButton.vue';
@@ -49,6 +56,9 @@ export default defineComponent({
 
   setup() {
     const items = ref<Item[]>([]);
+    const cartItems = ref<any[]>([]);
+    const totalPrice = ref<number>(0);
+    const itemCount = ref<number>(0);
 
     const updateItems = (fetchedItems: Item[]) => {
       items.value = fetchedItems;
@@ -62,18 +72,37 @@ export default defineComponent({
         console.error('Fehler beim Abrufen der Items', error);
       }
     };
+    const fetchCartDataFrom = async (endpoint: string) => {
+      try {
+        const response = await axiosInstance.get(endpoint);
+        return response.data;
 
-    const fetchCartData = () => {
+      } catch (error) {
+        console.error(`Error fetching from ${endpoint}`, error);
+        return null;
+      }
+    }
+
+    const fetchCartData = async () => {
       // Fetch updated cart data
       // This method would be called after an item is added to the cart
       // You should implement the logic to fetch and update the cart data here
+      cartItems.value = await fetchCartDataFrom("/api/cart/items");
+      totalPrice.value = await fetchCartDataFrom("/api/cart/total");
+      itemCount.value = await fetchCartDataFrom("/api/cart/count");
     };
 
-    fetchItems('groupId');  // replace 'groupId' with your actual groupId value
+    onMounted(() => {
+      fetchItems('groupId');  // replace 'groupId' with your actual groupId value
+      fetchCartData();
+    });
 
     return {
       items,
       updateItems,
+      cartItems,
+      totalPrice,
+      itemCount,
       fetchCartData
     };
   },

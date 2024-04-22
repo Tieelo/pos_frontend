@@ -19,10 +19,13 @@ coverage
 
 # Editor directories and files
 .vscode/*
-!.vscode/extensions.json
+.vscode/extensions.json
 .idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+.secrets
+/pos/pos_backend/
+/pos/pos_frontend/

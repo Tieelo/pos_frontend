@@ -24,7 +24,7 @@ import { defineComponent } from 'vue';
 import axiosInstance from '@/api/axiosInstance'
 
 export default defineComponent({
-  setup() {
+  setup(props, { emit }) {
     const dummy = () => {
       // Dummy function, does nothing
     };
@@ -33,6 +33,7 @@ export default defineComponent({
       try {
         const response = await axiosInstance.post('/api/cart/return');
         console.log('Warenkorb geleert', response);
+        emit('updateCart');
       } catch (error) {
         console.error('Fehler beim Leeren des Warenkorbs', error);
       }
@@ -52,6 +53,7 @@ export default defineComponent({
       try {
         const response = await axiosInstance.post('/api/cart/sell');
         console.log('Einkauf erledigt', response);
+        emit('updateCart');
       } catch (error) {
         console.error('Fehler beim Checkout', error);
       }
