@@ -1,14 +1,15 @@
-import axios from 'axios'
-// Create the Axios instance
+import axios from 'axios';
 
-
+// Erstelle die Axios-Instanz
 const axiosInstance = axios.create({
-    baseURL: 'http://pos_backend:8080',
-/*    baseURL: 'http://192.168.10.167:8080',*/
-    withCredentials: true
-    /*baseURL: import.meta.env.VITE_BACKEND_URL || 'http://localhost:11386'*/
-})
+    baseURL: 'http://localhost:8081',
+    // baseURL: 'http://pos_backend:8080',
+    withCredentials: true,
+    headers: {
+        'X-API-Key': '1234' // Ersetze YOUR_API_KEY mit deinem echten API-Schlüssel
+    }
+});
 
-console.log(axiosInstance.defaults.baseURL) // Log the base URL
+console.log(axiosInstance.defaults.baseURL); // Logge die Basis-URL
 
-export default axiosInstance
+export default axiosInstance;
