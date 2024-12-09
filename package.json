@@ -1,7 +1,7 @@
 {
   "name": "pos_frontend",
   "private": false,
-  "version": "0.1.5",
+  "version": "0.1.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,7 +17,7 @@
     "-": "^0.0.1",
     "@mdi/font": "^7.4.47",
     "@vue/compat": "^3.4.21",
-    "axios": "1.6.8",
+    "axios": "1.7.9",
     "bootstrap": "^5.3.2",
     "dotenv": "^16.4.5",
     "g": "^2.0.1",
