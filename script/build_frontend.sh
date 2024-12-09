@@ -2,16 +2,21 @@
 set -o errexit
 
 source .secrets # enthält die Variablen DOCKER_USERNAME, DOCKER_PASSWORD und GITHUB_TOKEN
-export BRANCH="feature/containerization"
+export BRANCH="main"
 export APPLICATION="pos_frontend"
 export USER="tieelo"
 
 git clone --branch=${BRANCH} https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${USER}/${APPLICATION}.git
 cd ${APPLICATION}
 
-export VERSION="$(grep -m 1 "^#" semver.txt | cut -c 2-)"
+export VERSION="$(grep -m 1 "^#" semver.txt | cut -c 2- | tr -d '\r')"
 export TAG="${USER}/${APPLICATION}:${VERSION}"
 export LATEST="${USER}/${APPLICATION}:latest"
+
+for file in script/*.sh
+do
+    dos2unix "$file"
+done
 
 #npm install
 npm install
