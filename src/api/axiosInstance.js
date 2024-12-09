@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Erstelle die Axios-Instanz
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8081',
+    baseURL: 'http://pos_spring:8080',
     // baseURL: 'http://pos_backend:8080',
     withCredentials: true,
     headers: {
